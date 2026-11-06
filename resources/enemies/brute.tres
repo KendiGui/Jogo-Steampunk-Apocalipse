@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemy_brute.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_data")
+id = &"brute"
+display_name = "Brutamontes"
+max_health = 120
+move_speed = 28.0
+attack_damage = 20
+attack_range = 34.0
+attack_cooldown = 1.4
+collision_radius = 9.0
+texture = ExtResource("2_tex")
+target_priority = "crystal"

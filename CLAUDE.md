@@ -41,4 +41,4 @@ Roguelike cooperativo top-down em pixel art, tema steampunk apocalíptico. De 1 
 7. Conexão pela internet
 8. Arte final, som, lore, conteúdo e polimento
 
-**Fase atual:** 1 (Fase 0 concluída: project.godot com pixel art, renderizador Compatibility, janela 1280x720, aspect keep). Sub-etapas da Fase 1: (1) Input Map e andar, (2) mira, (3) ataque corpo a corpo de teste, (4) rede host/join em localhost.
+**Fase atual:** 2 (Fases 0 e 1 concluídas). Fase 2: Cristal, Brutamontes e Ágil (Resources em `resources/enemies/`), vida e queda do jogador, botão para iniciar a noite (diretor em `scripts/world/night_director.gd`), derrota por Cristal destruído ou todos caídos. Todos os números atuais (vida, dano, ondas) são **valores de TESTE**, não de balanceamento. Reviver só na Fase 5.

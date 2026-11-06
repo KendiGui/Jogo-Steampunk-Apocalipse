@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://scripts/player/player_input.gd" id="2_input"]
@@ -12,14 +12,42 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
 radius = 16.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_state"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:health")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:is_dead")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_input"]
+properties/0/path = NodePath(".:move_direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:aim_direction")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:attack_pressed")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_player")
 
+[node name="StateSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_state")
+
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource("2_input")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="PlayerInput"]
+replication_config = SubResource("SceneReplicationConfig_input")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)

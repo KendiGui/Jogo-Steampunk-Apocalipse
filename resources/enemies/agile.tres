@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemy_agile.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_data")
+id = &"agile"
+display_name = "Ágil"
+max_health = 20
+move_speed = 70.0
+attack_damage = 6
+attack_range = 22.0
+attack_cooldown = 0.7
+collision_radius = 5.0
+texture = ExtResource("2_tex")
+target_priority = "player"

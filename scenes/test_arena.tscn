@@ -1,8 +1,25 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/sprites/floor_tile.png" id="1_floor"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/world/test_arena.gd" id="2_arena"]
 [ext_resource type="PackedScene" path="res://scenes/training_dummy.tscn" id="3_dummy"]
+[ext_resource type="PackedScene" path="res://scenes/crystal.tscn" id="4_crystal"]
+[ext_resource type="Script" path="res://scripts/world/night_director.gd" id="5_director"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="6_hud"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_director"]
+properties/0/path = NodePath(".:state")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:night")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:enemies_left")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:game_over_reason")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h"]
 size = Vector2(1024, 32)
@@ -12,6 +29,22 @@ size = Vector2(32, 600)
 
 [node name="TestArena" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("2_arena")
+
+[node name="EntitySpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn", "res://scenes/enemy.tscn")
+spawn_path = NodePath("..")
+
+[node name="Crystal" parent="." instance=ExtResource("4_crystal")]
+
+[node name="Director" type="Node" parent="."]
+script = ExtResource("5_director")
+
+[node name="DirectorSynchronizer" type="MultiplayerSynchronizer" parent="Director"]
+replication_interval = 0.1
+replication_config = SubResource("SceneReplicationConfig_director")
+
+[node name="HUD" parent="." instance=ExtResource("6_hud")]
 
 [node name="Floor" type="Sprite2D" parent="."]
 z_index = -10
@@ -39,8 +72,6 @@ shape = SubResource("RectangleShape2D_v")
 [node name="Right" type="CollisionShape2D" parent="Walls"]
 position = Vector2(496, 0)
 shape = SubResource("RectangleShape2D_v")
-
-[node name="Player" parent="." instance=ExtResource("2_player")]
 
 [node name="TrainingDummy1" parent="." instance=ExtResource("3_dummy")]
 position = Vector2(90, -20)

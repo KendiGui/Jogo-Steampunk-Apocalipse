@@ -6,11 +6,12 @@ extends StaticBody2D
 
 ## Chamada pelo jogador (no host) quando o golpe acerta.
 func take_damage(amount: int, from_position: Vector2) -> void:
-	# Na etapa de rede, esta função continua rodando só no host e o efeito
-	# visual abaixo será enviado a todos os jogadores.
-	_show_hit(amount, from_position)
+	# Roda só no host (quem chama é o golpe do jogador, que o host valida).
+	# O efeito visual é enviado a todos os jogadores.
+	_show_hit.rpc(amount, from_position)
 
 
+@rpc("authority", "call_local", "reliable")
 func _show_hit(amount: int, from_position: Vector2) -> void:
 	# Balança para o lado oposto a quem bateu.
 	var push_side: float = signf(global_position.x - from_position.x)
