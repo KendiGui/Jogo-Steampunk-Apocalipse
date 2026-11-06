@@ -41,4 +41,4 @@ Roguelike cooperativo top-down em pixel art, tema steampunk apocalíptico. De 1 
 7. Conexão pela internet
 8. Arte final, som, lore, conteúdo e polimento
 
-**Fase atual:** 0 (ajustando o project.godot: pixel art e renderizador Compatibility).
+**Fase atual:** 1 (Fase 0 concluída: project.godot com pixel art, renderizador Compatibility, janela 1280x720, aspect keep). Sub-etapas da Fase 1: (1) Input Map e andar, (2) mira, (3) ataque corpo a corpo de teste, (4) rede host/join em localhost.
