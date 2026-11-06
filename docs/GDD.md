@@ -1,4 +1,4 @@
-# GDD (rascunho 7) — Jogo Sem Nome (roguelike steampunk apocalíptico)
+# GDD (rascunho 8) — Jogo Sem Nome (roguelike steampunk apocalíptico)
 
 > Status: briefing. **[A DEFINIR]** = não decidido.
 
@@ -36,6 +36,7 @@
 - **Novos caminhos são desbloqueados pela meta-progressão.**
 - **Materiais variam por run:** nem sempre haverá material para um caminho, arma ou defesa; o jogador adapta a estratégia ao que o jogo gerar.
 - **Progresso X no mapa leva a um novo mapa / novo acampamento.**
+- **Combate:** mira com o mouse (analógico direito no controle), **corpo a corpo e à distância**. O estilo depende do **personagem inicial** e das **armas craftadas ao longo da run**.
 - Arte híbrida: packs prontos + placeholders por script + edição manual.
 
 ## 5. Identidade steampunk (mecânicas)
@@ -70,12 +71,26 @@
   3. O que define o "progresso X"?
   4. Moeda da meta-progressão.
 
-## 9. Inimigos (arquétipos iniciais)
+## 9. Combate e personagens
+- **Controles:** WASD para andar, mouse para mirar, clique para atacar. No controle, analógico esquerdo para andar e direito para mirar.
+- **Co-op local (2 jogadores):** um no teclado e mouse, outro no controle.
+- **Estilos:** corpo a corpo e à distância, os dois no jogo.
+- **Personagem inicial** define o estilo e a arma de partida.
+- **Armas são craftadas ao longo da run.** Cada arma tem 3 caminhos de aprimoramento (ver seção 6) e a identidade a vapor (empurrão, pressão em área; ver seção 5).
+- **[A DEFINIR]:**
+  1. Quantos personagens iniciais? São desbloqueados pela meta-progressão?
+  2. Quantas armas se carrega ao mesmo tempo e como se troca?
+  3. Cada personagem tem habilidades próprias além da arma?
+  4. Arma craftada substitui a atual ou soma ao arsenal?
+  5. Armas têm desgaste ou custo de munição (combina com a escassez)?
+- **Técnico:** arma como **Resource** com tipo (corpo a corpo ou à distância); a direção da mira é enviada ao host, que valida os acertos.
+
+## 10. Inimigos (arquétipos iniciais)
 - **Brutamontes:** grandes, lentos, muita vida, focam estruturas e o Cristal.
 - **Ágeis:** pequenos, rápidos, em grupo, flanqueiam.
 - Outros **[A DEFINIR]**.
 
-## 10. Arquitetura (base técnica)
+## 11. Arquitetura (base técnica)
 - **Multiplayer online desde a Fase 1** (host-autoritativo, High-Level Multiplayer do Godot).
 - **Co-op local** reaproveita o mesmo código.
 - **Mapa e materiais procedurais por seed** compartilhada.
@@ -85,11 +100,11 @@
 - Testes de rede: 2 janelas no mesmo PC → rede local → internet.
 - Conexão pela internet: **[A DEFINIR]**.
 
-## 11. Roadmap oficial
+## 12. Roadmap oficial
 | Fase | Objetivo |
 |---|---|
 | 0 | Básico do Godot + Git/GitHub |
-| 1 | Personagem top-down que anda e ataca, **já em rede** |
+| 1 | Personagem top-down que anda, **mira com o mouse** e ataca, **já em rede** |
 | 2 | Mutantes e noite de hordas, com o Cristal (em rede) |
 | 3 | Estruturas destrutíveis, reparo, torres a vapor; **sistema de 3 caminhos** com 1 torre (em rede) |
 | 4 | Dia cronometrado: coleta e craft; materiais variáveis; 1 arma, 1 armadura, 1 acessório com 3 caminhos |
@@ -98,16 +113,16 @@
 | 7 | Conexão pela internet |
 | 8 | Arte final, som, lore, mais conteúdo e polimento |
 
-## 12. Arte
+## 13. Arte
 - Início: packs gratuitos + placeholders por script. Edição: Pixelorama ou Aseprite.
 - Arte definitiva só depois de o jogo estar divertido.
 
-## 13. Forma de trabalho
+## 14. Forma de trabalho
 - Usuário iniciante em Godot, pouca prática de programação.
 - Cada passo entrega **código completo**, com explicação parte por parte e o porquê.
 - O usuário decide quando mexer por conta própria e pergunta quando quiser entender mais.
 
-## 14. Riscos identificados
+## 15. Riscos identificados
 1. **Explosão de conteúdo:** 4 categorias × N itens × 3 caminhos × níveis. Crescer aos poucos, sempre com o sistema por dados.
 2. **Runs impossíveis por azar** de materiais; precisa de garantia mínima.
 3. **Online + local juntos** multiplica casos de teste.
@@ -115,12 +130,13 @@
 5. **Solo:** sem reviver; balanceamento de 1 a 4 jogadores.
 6. **Muitos inimigos em rede:** limitar quantidade e simplificar IA.
 7. **Save em multiplayer:** jogadores com progressos diferentes.
+8. **Equilíbrio entre corpo a corpo e à distância:** à noite, quem luta de perto fica exposto; as armas e os personagens precisam compensar isso.
 
-## 15. Perguntas em aberto
+## 16. Perguntas em aberto
 1. Nome do jogo.
 2. Como reviver.
 3. Misto: 2 locais + remotos?
-4. Estilo de combate.
+4. Personagens iniciais e sistema de armas (seção 9).
 5. Plataforma: só PC?
 6. Conexão online.
 7. Detalhes dos caminhos (seção 6).
